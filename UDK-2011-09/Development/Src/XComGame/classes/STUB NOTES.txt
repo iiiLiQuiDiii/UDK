@@ -1,0 +1,2 @@
+enum XGUnitNativeBase.EInteractionFacing has been inlined in XComInteractiveLevelActor
+struct KineticStrikeAttackInfo,UnitDirectionInfo commented out in XComWorldData
