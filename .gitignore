@@ -3270,7 +3270,6 @@ UDK-2011-09/UDKGame/Config/DefaultEditorKeyBindings.ini
 UDK-2011-09/UDKGame/Config/DefaultEditorUDK.ini
 UDK-2011-09/UDKGame/Config/DefaultEditorUserSettings.ini
 UDK-2011-09/UDKGame/Config/DefaultEngine - Copy.ini
-UDK-2011-09/UDKGame/Config/DefaultEngine.ini
 UDK-2011-09/UDKGame/Config/DefaultEngineUDK.ini
 UDK-2011-09/UDKGame/Config/DefaultGame.ini
 UDK-2011-09/UDKGame/Config/DefaultGameUDK.ini
@@ -4192,3 +4191,4 @@ UDK-2011-09/UDKGame/Content/Maps/UT3/DM-Deck.udk
 UDK-2011-09/UDKGame/Content/Maps/UT3/EnvyEntry.udk
 UDK-2011-09/UDKGame/Content/Maps/UT3/UDKFrontEndMap.udk
 UDK-2011-09/UDKGame/Content/Maps/UT3/VCTF-Necropolis.udk
+UDK-2011-09/UDKGame/Config/UDKEngine.ini
