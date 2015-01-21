@@ -12,7 +12,7 @@ class XComLevelVolume extends Volume
 
 var notforconsole Material LevelBoundsMaterial;
 var() const editconst export editinline StaticMeshComponent StaticMeshComponent;
-var XComWorldData WorldData;
+var() XComWorldData WorldData;
 var XComDestructionInstData DestructionData;
 var notforconsole StaticMesh TileMesh;
 var notforconsole Material NeverSeenTileMaterial;

@@ -15,16 +15,101 @@ class WorldInfo extends ZoneInfo
 	dependson(PostProcessEffect)
 	dependson(MusicTrackDataStructures);
 	
-struct XComHeightFogParameters
+	
+
+enum ETimeOfDay
+{
+    eTOD_None,
+    eTOD_Dawn,
+    eTOD_Noon,
+    eTOD_Afternoon,
+    eTOD_Sunset,
+    eTOD_Dusk,
+    eTOD_Twilight,
+    eTOD_Night,
+    eTOD_MAX
+};
+
+enum StormIntensity_t
+{
+    NoStorm,
+    DistantGatheringStorm,
+    LightRain,
+    LightStorm,
+    ModerateStorm,
+    SevereStorm,
+    Hurricane,
+    Custom,
+    StormIntensity_t_MAX
+};
+
+struct native PIEInfo
+{
+    var() bool m_bSpawnSoldiers;
+    var() bool m_bSpawnAliens;
+
+    structdefaultproperties
+    {
+        m_bSpawnSoldiers=false
+        m_bSpawnAliens=false
+    }
+};
+
+struct native XComHeightFogParameters
 {
     var() bool bEnabled;
     var() float FogDensity;
     var() float FogHeight;
     var() float FogHeightFalloff;
     var() float FogMaxOpacity;
+    var() float StartDistance;
+    var() float LightTerminatorAngle;
+    var() float OppositeLightBrightness;
+    var() Color OppositeLightColor;
+    var() float LightInscatteringBrightness;
+    var() Color LightInscatteringColor;
+
+    structdefaultproperties
+    {
+        bEnabled=false
+        FogDensity=0.0
+        FogHeight=0.0
+        FogHeightFalloff=0.0
+        FogMaxOpacity=0.0
+        StartDistance=0.0
+        LightTerminatorAngle=0.0
+        OppositeLightBrightness=0.0
+        OppositeLightColor=(R=0,G=0,B=0,A=0)
+        LightInscatteringBrightness=0.0
+        LightInscatteringColor=(R=0,G=0,B=0,A=0)
+    }
+};
+
+struct native XComMaterialParametersInfo
+{
+    var() LinearColor EnvironmentDirection;
+    var() LinearColor EnvironmentColor;
+    var() LinearColor WeatherParameters;
+    var() LinearColor BuildingVisParameters;
+    var() LinearColor BuildingVisParameters2;
+    var() LinearColor EnvironmentColorAndEmissiveFade;
+    var() LinearColor TestVector;
+    var() bool bRaining;
+
+    structdefaultproperties
+    {
+        EnvironmentDirection=(R=1.0,G=0.0,B=0.0,A=1.0)
+        EnvironmentColor=(R=0.50,G=0.50,B=0.50,A=1.0)
+        WeatherParameters=(R=1.0,G=1.0,B=1.0,A=1.0)
+        BuildingVisParameters=(R=100000000000.0,G=100000000000.0,B=100000000000.0,A=0.0)
+        BuildingVisParameters2=(R=0.0,G=0.0,B=0.0,A=1.0)
+        EnvironmentColorAndEmissiveFade=(R=0.0,G=0.0,B=0.0,A=1.0)
+        TestVector=(R=0.0,G=0.0,B=0.0,A=1.0)
+        bRaining=false
+    }
 };    
 
-//var(XCom) XComHeightFogParameters XComHeightFog;
+
 
 /** Maximum number of bookmarks																		*/
 const MAX_BOOKMARK_NUMBER = 10;
@@ -802,6 +887,31 @@ var config bool bAllowHostMigration;
 /** Started as soon as a client peer disconnects.  If migration does succeed within this time then fall back to server disconnect failure */
 var config float HostMigrationTimeout;
 
+ //var(XCom) PIEInfo PlayInEditorInfo;
+//var(XCom) class<GameInfo> GameType;
+var(XCom) XComHeightFogParameters XComHeightFog;
+var(XCom) bool UseDownsampledOutlineDepth;
+var(XCom) bool bHasNoPathing;
+var(XCom) bool bShowLevelBorder;
+var XComVisGroupData VisGroupData;
+
+ //var(XCom) XComMaterialParametersInfo XComMaterialParameters;
+ var private transient Vector XComCursorPosition;
+  //var(XCom) ETimeOfDay m_eTimeOfDay;
+  //var(XCom) StormIntensity_t StormIntensity;
+// var(XCom) DominantDirectionalLight m_kDominantDirectionalLight;
+ 
+var(XCom) Color LightningColor;
+var(XCom) float LightningIntensity;
+var(XCom) float RainOpacity;
+var(XCom) int RainSoundIntensity;
+var(XCom) float ThunderClapProbability;
+var(XCom) float RainScale;
+var(XCom) float CameraYawOffset;
+// var WatchVariableMgr MyWatchVariableMgr;
+// var KismetVariableMgr MyKismetVariableMgr;
+var XComDestructibleDebrisManager MyDestructibleDebrisMgr;
+  
 cpptext
 {
 	// UObject interface.
@@ -1460,4 +1570,78 @@ defaultproperties
 	// Set level lighting quality to invalid for new maps with no built lighting or old maps where
 	// quaility cant be determined.  The cooker will not warn when the quality is invalid
 	LevelLightingQuality = Quality_MAX;
+	
+	XComHeightFog=(bEnabled=false,FogDensity=0.020,FogHeight=1000.0,FogHeightFalloff=0.20,FogMaxOpacity=1.0,StartDistance=0.0,LightTerminatorAngle=45.0,OppositeLightBrightness=0.20,OppositeLightColor=(R=177,G=208,B=255,A=0),LightInscatteringBrightness=1.0,LightInscatteringColor=(R=245,G=212,B=41,A=0))
+    bShowLevelBorder=true
+    // bPersistPostProcessToNextLevel=true
+    // bBumpOffsetEnabled=true
+    // bNoMobileMapWarnings=true
+    // bPlaceCellsOnSurfaces=true
+    // bAllowTemporalAA=true
+    // bContinueToSeamlessTravelDestination=true
+   // XComMaterialParameters=(EnvironmentDirection=(R=1.0,G=0.0,B=0.0,A=1.0),EnvironmentColor=(R=0.50,G=0.50,B=0.50,A=1.0),WeatherParameters=(R=1.0,G=1.0,B=1.0,A=1.0),BuildingVisParameters=(R=100000000000.0,G=100000000000.0,B=100000000000.0,A=0.0),BuildingVisParameters2=(R=0.0,G=0.0,B=0.0,A=1.0),EnvironmentColorAndEmissiveFade=(R=0.0,G=0.0,B=0.0,A=1.0),TestVector=(R=0.0,G=0.0,B=0.0,A=1.0),bRaining=false)
+    NextTravelType=ETravelType.TRAVEL_Relative
+    LevelLightingQuality=ELightingBuildQuality.None
+    LightningColor=(R=76,G=103,B=245,A=255)
+    LightningIntensity=5.0
+    RainOpacity=1.0
+    // DefaultPostProcessSettings=(bOverride_EnableBloom=true,bOverride_EnableDOF=true,bOverride_EnableMotionBlur=true,bOverride_EnableSceneEffect=true,bOverride_AllowAmbientOcclusion=true,bOverride_OverrideRimShaderColor=true,bOverride_Bloom_Scale=true,bOverride_Bloom_Threshold=true,bOverride_Bloom_Tint=true,bOverride_Bloom_ScreenBlendThreshold=true,bOverride_Bloom_InterpolationDuration=true,bOverride_DOF_FalloffExponent=true,bOverride_DOF_BlurKernelSize=true,bOverride_DOF_BlurBloomKernelSize=true,bOverride_DOF_MaxNearBlurAmount=true,bOverride_DOF_MinBlurAmount=false,bOverride_DOF_MaxFarBlurAmount=true,bOverride_DOF_FocusType=true,bOverride_DOF_FocusInnerRadius=true,bOverride_DOF_FocusDistance=true,bOverride_DOF_FocusPosition=true,bOverride_DOF_InterpolationDuration=true,bOverride_DOF_BokehTexture=false,bOverride_DOF_NearFocusStart=false,bOverride_DOF_NearFocusEnd=false,bOverride_DOF_FarFocusStart=false,bOverride_DOF_FarFocusEnd=false,bOverride_MotionBlur_MaxVelocity=false,bOverride_MotionBlur_Amount=false,bOverride_MotionBlur_FullMotionBlur=false,bOverride_MotionBlur_CameraRotationThreshold=false,bOverride_MotionBlur_CameraTranslationThreshold=false,bOverride_MotionBlur_InterpolationDuration=false,bOverride_Scene_Desaturation=true,bOverride_Scene_Colorize=false,bOverride_Scene_TonemapperScale=false,bOverride_Scene_ImageGrainScale=false,bOverride_Scene_HighLights=true,bOverride_Scene_MidTones=true,bOverride_Scene_Shadows=true,bOverride_Scene_InterpolationDuration=true,bOverride_Scene_ColorGradingLUT=false,bOverride_RimShader_Color=true,bOverride_RimShader_InterpolationDuration=true,bEnableBloom=true,bEnableDOF=false,bTwoLayerSimpleDepthOfField=false,bEnableMotionBlur=false,bEnableSceneEffect=true,bAllowAmbientOcclusion=true,bOverrideRimShaderColor=false,bOverrideXComFOWColor=false,XComFOWColor=(R=0.0,G=0.0,B=0.0,A=1.0),XComFogOfWarColor=(R=0,G=0,B=0,A=1),bOverrideXComHaveSeenTint=false,HaveSeenTintColor=(R=125,G=128,B=128,A=255),bOverrideXComFOWBorderSettings=false,XComFOWBorderFadeOutColor=0.20,XComFOWBorderFadeOutRate=0.050,XComFOWBorderFadeInRate=1.0,DisabledMaterialEffects=none,Bloom_Scale=1.0,Bloom_Threshold=1.0,Bloom_Tint=(R=255,G=255,B=255,A=0),Bloom_ScreenBlendThreshold=10.0,Bloom_InterpolationDuration=1.0,DOF_BlurBloomKernelSize=16.0,DOF_FalloffExponent=4.0,DOF_BlurKernelSize=16.0,DOF_MaxNearBlurAmount=1.0,DOF_MinBlurAmount=0.0,DOF_MaxFarBlurAmount=1.0,DOF_FocusType=EFocusType.FOCUS_Distance,DOF_FocusInnerRadius=2000.0,DOF_FocusDistance=0.0,DOF_FocusPosition=(X=0.0,Y=0.0,Z=0.0),DOF_InterpolationDuration=1.0,DOF_BokehTexture=none,DOF_NearFocusStart=0.0,DOF_NearFocusEnd=0.0,DOF_FarFocusStart=0.0,DOF_FarFocusEnd=0.0,MotionBlur_MaxVelocity=1.0,MotionBlur_Amount=0.50,MotionBlur_FullMotionBlur=true,MotionBlur_CameraRotationThreshold=45.0,MotionBlur_CameraTranslationThreshold=10000.0,MotionBlur_InterpolationDuration=1.0,Scene_Desaturation=0.0,Scene_Colorize=(X=1.0,Y=1.0,Z=1.0),Scene_TonemapperScale=1.0,Scene_ImageGrainScale=0.0,Scene_HighLights=(X=1.0,Y=1.0,Z=1.0),Scene_MidTones=(X=1.0,Y=1.0,Z=1.0),Scene_Shadows=(X=0.0,Y=0.0,Z=0.0),Scene_InterpolationDuration=1.0,RimShader_Color=(R=0.8277260,G=0.5859730,B=0.470440,A=1.0),RimShader_InterpolationDuration=1.0,ColorGrading_LookupTable=none,ColorGradingLUT=(LUTTextures=none,LUTWeights=none))
+    // SquintModeKernelSize=128.0
+    // DefaultReverbSettings=(bApplyReverb=true,ReverbType=ReverbPreset.REVERB_Default,Volume=0.50,FadeTime=2.0)
+    // DefaultAmbientZoneSettings=(bIsWorldInfo=true,ExteriorVolume=1.0,ExteriorTime=0.50,ExteriorLPF=1.0,ExteriorLPFTime=0.50,InteriorVolume=1.0,InteriorTime=0.50,InteriorLPF=1.0,InteriorLPFTime=0.50)
+    FogStart=400.0
+    FogEnd=4000.0
+    FogColor=(R=128,G=128,B=255,A=192)
+    BumpEnd=1000.0
+    TimeDilation=1.0
+    DemoPlayTimeDilation=1.0
+    DefaultTexture=Texture2D'EngineResources.DefaultTexture'
+    WhiteSquareTexture=Texture2D'EngineResources.WhiteSquareTexture'
+    StallZ=1000000.0
+    // DefaultGravityZ=-1500.0
+    // RBPhysicsGravityScaling=1.0
+    MoveRepSize=42.0
+    PackedLightAndShadowMapTextureSize=1024
+    DefaultColorScale=(X=1.0,Y=1.0,Z=1.0)
+    CurrentMusicTrack=(TheSoundCue=none,bAutoPlay=false,bPersistentAcrossLevels=false,FadeInTime=5.0,FadeInVolumeLevel=1.0,FadeOutTime=5.0,FadeOutVolumeLevel=0.0,MP3Filename="")
+    ReplicatedMusicTrack=(TheSoundCue=none,bAutoPlay=false,bPersistentAcrossLevels=false,FadeInTime=5.0,FadeInVolumeLevel=1.0,FadeOutTime=5.0,FadeOutVolumeLevel=0.0,MP3Filename="")
+    // EmitterPoolClassPath="Engine.EmitterPool"
+    // DecalManagerClassPath="Engine.DecalManager"
+    // ParticleEventManagerClassPath="XComGame.XComParticleEventManager"
+    MaxPhysicsDeltaTime=0.33333330
+    // MaxPhysicsSubsteps=2
+    PhysicsProperties=(PrimaryScene=(bUseHardware=false,bFixedTimeStep=false,TimeStep=0.020,MaxSubSteps=5),CompartmentRigidBody=(bUseHardware=false,bFixedTimeStep=false,TimeStep=0.020,MaxSubSteps=2),CompartmentFluid=(bUseHardware=true,bFixedTimeStep=false,TimeStep=0.020,MaxSubSteps=1),CompartmentCloth=(bUseHardware=true,bFixedTimeStep=true,TimeStep=0.020,MaxSubSteps=2),CompartmentSoftBody=(bUseHardware=true,bFixedTimeStep=true,TimeStep=0.020,MaxSubSteps=2))
+    DefaultSkinWidth=0.0250
+    ApexLODResourceBudget=-1.0
+    DestructibleSettings=(MaxChunkIslandCount=-1,MaxRrbActorCount=-1,MaxChunkSeparationLOD=1.0,bOverrideMaxChunkSeparationLOD=false)
+    EmitterVertical=PhysicsLODVerticalEmitter'Default__WorldInfo.PhysicsLODVerticalEmitter0'
+    VerticalProperties=(Emitters=(bDisableLod=true,ParticlesLodMin=0,ParticlesLodMax=15000,PacketsPerPhysXParticleSystemMax=500,bApplyCylindricalPacketCulling=true,SpawnLodVsFifoBias=1.0))
+    // ChanceOfPhysicsChunkOverride=1.0
+    // FractureExplosionVelScale=1.0
+    MaxNumFacturedChunksToSpawnInAFrame=12
+    // FracturedMeshWeaponDamage=1.0
+    VisibilityCellSize=200
+    CharacterLitIndirectBrightness=5.0
+    CharacterLitIndirectContrastFactor=1.0
+    CharacterShadowedIndirectBrightness=5.0
+    CharacterShadowedIndirectContrastFactor=1.0
+    CharacterLightingContrastFactor=1.50
+    ImageReflectionEnvironmentColor=(R=1.0,G=1.0,B=1.0,A=1.0)
+    // LightEnvironmentIndirectScaleFactor=0.20
+    // LightEnvironmentAmbientScaleFactor=1.80
+    // LightmassSettings=(StaticLightingLevelScale=1.0,StaticLightingDynamicObjectScale=1.0,NumIndirectLightingBounces=3,EnvironmentColor=(R=0,G=0,B=0,A=0),EnvironmentIntensity=1.0,EmissiveBoost=1.0,DiffuseBoost=2.0,SpecularBoost=1.0,IndirectNormalInfluenceBoost=0.30,bUseAmbientOcclusion=false,bEnableImageReflectionShadowing=false,DirectIlluminationOcclusionFraction=0.50,IndirectIlluminationOcclusionFraction=1.0,OcclusionExponent=1.0,FullyOccludedSamplesFraction=1.0,MaxOcclusionDistance=200.0,bVisualizeMaterialDiffuse=false,bVisualizeAmbientOcclusion=false,bCompressShadowmap=false)
+    // HostMigrationTimeout=15.0
+  
+    RemoteRole=ENetRole.ROLE_SimulatedProxy
+    bWorldGeometry=true
+    bAlwaysRelevant=true
+    bMovable=false
+    bBlockActors=true
+    bHiddenEd=true 
+	
 }
+
+// defaultproperties
+// {
+ 
+// }
