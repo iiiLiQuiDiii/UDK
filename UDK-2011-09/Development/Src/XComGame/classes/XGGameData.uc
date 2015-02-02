@@ -30,6 +30,8 @@ enum EGameplayOption
     eGO_RandomFunding,
     eGO_RandomRookieStats,
     eGO_RandomStatProgression,
+    eGO_RandomPerks,
+    eGO_RandomSeed,
     eGO_WoundsAffectStats,
     eGO_CritOnFlank,
     eGO_InterrogateForPsi,
@@ -38,10 +40,13 @@ enum EGameplayOption
     eGO_VariableAbductionRewards,
     eGO_EscalatingSatelliteCosts,
     eGO_UltraRarePsionics,
+    eGO_ThirstForBlood,
     eGO_DecliningFunding,
     eGO_DegradingElerium,
     eGO_LoseGearOnDeath,
     eGO_MorePower,
+    eGO_AimingAngles,
+    eGO_MindHatesMatter,
     eGO_MAX
 };
 
@@ -66,6 +71,12 @@ enum EFoundryTech
     eFoundry_SHIVSuppression,
     eFoundry_StealthSatellites,
     eFoundry_Scope,
+    eFoundry_EleriumFuel,
+    eFoundry_MECCloseCombat,
+    eFoundry_AdvancedServomotors,
+    eFoundry_ShapedArmor,
+    eFoundry_SentinelDrone,
+    eFoundry_TacticalRigging,
     eFoundry_MAX
 };
 
@@ -91,10 +102,26 @@ enum EOTSTech
     eOTS_SquadSize_II,
     eOTS_XP_II,
     eOTS_HP_I,
-    eOTS_HP_II,
+    eOTS_Leader,
     eOTS_XP_I,
     eOTS_Will_I,
     eOTS_MAX
+};
+
+enum EGeneModTech
+{
+    eGeneMod_None,
+    eGeneMod_SecondaryHeart,
+    eGeneMod_AdrenalNeurosympathy,
+    eGeneMod_NeuralDamping,
+    eGeneMod_NeuralFeedback,
+    eGeneMod_HyperReactivePupils,
+    eGeneMod_DepthPerception,
+    eGeneMod_BioelectricSkin,
+    eGeneMod_MimeticSkin,
+    eGeneMod_MuscleFiberDensity,
+    eGeneMod_AdaptiveBoneMarrow,
+    eGeneMod_MAX
 };
 
 enum ETechType
@@ -112,6 +139,7 @@ enum ETechType
     eTech_AlienMaterials,
     eTech_Exp_Warfare,
     eTech_Elerium,
+    eTech_Meld,
     eTech_PsiArmor,
     eTech_Armor_Carapace,
     eTech_Armor_Skeleton,
@@ -155,6 +183,9 @@ enum ETechType
     eTech_AutopsyDrone,
     eTech_AutopsySectopod,
     eTech_AutopsyEthereal,
+    eTech_AutopsyMechtoid,
+    eTech_AutopsySeeker,
+    eTech_Autopsy_END,
     eTech_Placeholder,
     eTech_MAX
 };
@@ -306,6 +337,9 @@ enum EProfileStats
     eProfile_HardGamesCompleted,
     eProfile_ClassicGamesCompleted,
     eProfile_UFOsShotDown,
+    eProfile_MeldTutorialComplete,
+    eProfile_ProgenyComplete,
+    eProfile_SlingshotComplete,
     eProfile_MAX
 };
 
@@ -364,6 +398,8 @@ enum EFacilityType
     eFacility_DeusEx,
     eFacility_GreyMarket,
     eFacility_SitRoom,
+    eFacility_CyberneticsLab,
+    eFacility_GeneticsLab,
     eFacility_MAX
 };
 
@@ -389,12 +425,15 @@ enum EMissionType
     eMission_Abduction,
     eMission_Crash,
     eMission_LandedUFO,
+    eMission_CovertOpsExtraction,
+    eMission_CaptureAndHold,
     eMission_HQAssault,
     eMission_AlienBase,
     eMission_TerrorSite,
     eMission_Final,
     eMission_Special,
     eMission_DLC,
+    eMission_ExaltRaid,
     eMission_SP_END,
     eMission_MP_START,
     eMission_MPDeathmatch,
@@ -415,6 +454,43 @@ enum EFCMissionType
     eFCMType_Rescue,
     eFCMType_Campaign,
     eFCMType_MAX
+};
+
+enum EFCMission
+{
+    eFCM_None,
+    eFCM_HeliAssault,
+    eFCM_PierAssault,
+    eFCM_TruckStopAssault,
+    eFCM_IndustrialAssault,
+    eFCM_CemeteryAssault,
+    eFCM_ResearchAssault,
+    eFCM_TrainStationBomb,
+    eFCM_SlaughterBomb,
+    eFCM_TrainyardBomb,
+    eFCM_BridgeBomb,
+    eFCM_CommercialExtraction,
+    eFCM_PierExtraction,
+    eFCM_MuseumRescue,
+    eFCM_HighwayRescue,
+    eFCM_BoulevardRescue,
+    eFCM_ResearchRescue,
+    eFCM_CemeteryBomb,
+    eFCM_BaseGameMAX,
+    eFCM_SLINGSHOT_START,
+    eFCM_Slingshot_LowFriends,
+    eFCM_Slingshot_ConfoundingLight,
+    eFCM_Slingshot_Gangplank,
+    eFCM_SLINGSHOT_END,
+    eFCM_PROGENY_START,
+    eFCM_Progeny_Portent,
+    eFCM_Progeny_Deluge,
+    eFCM_Progeny_Furies,
+    eFCM_PROGENY_END,
+    eFCM_ChryssalidHive,
+    eFCM_MeldTutorial,
+    eFCM_XPACK_MAX,
+    eFCM_MAX
 };
 
 enum EMissionTime
@@ -459,15 +535,17 @@ enum EItemType
     eItem_HeavyPlasma,
     eItem_PlasmaSniperRifle,
     eItem_BlasterLauncher,
-    eItem_FlameThrower,
-    eItem_PlaceholderWeapon0,
-    eItem_PlaceholderWeapon1,
-    eItem_PlaceholderWeapon2,
-    eItem_PlaceholderWeapon3,
-    eItem_PlaceholderWeapon4,
-    eItem_PlaceholderWeapon5,
-    eItem_PlaceholderWeapon6,
-    eItem_PlaceholderWeapon7,
+    eItem_MechtoidPlasmaCannon,
+    eItem_SeekerPlasmaPistol,
+    eItem_MecKineticArm,
+    eItem_MecFlameThrower,
+    eItem_MecGrenadeLauncher,
+    eItem_MecRestorativeMist,
+    eItem_MecElectroPulse,
+    eItem_MecProximityMineLauncher,
+    eItem_Chaingun,
+    eItem_Railgun,
+    eItem_ParticleBeam,
     eItem_BEGIN_SPECIAL_WEAPONS,
     eItem_SectopodArm,
     eItem_SectopodCannon,
@@ -493,7 +571,7 @@ enum EItemType
     eItem_SoldierNoWeapon,
     eItem_Plague,
     eItem_SectopodClusterBomb,
-    eItem_END_SPECIAL_WEAPONS,
+    eItem_SeekerTentacles,
     eItem_END_WEAPONS,
     eItem_BEGIN_ARMOR,
     eItem_ArmorKevlar,
@@ -503,16 +581,7 @@ enum EItemType
     eItem_ArmorArchangel,
     eItem_ArmorGhost,
     eItem_ArmorPsi,
-    eItem_DLCArmor0,
-    eItem_DLCArmor1,
-    eItem_DLCArmor2,
-    eItem_DLCArmor3,
-    eItem_DLCArmor4,
-    eItem_DLCArmor5,
-    eItem_DLCArmor6,
-    eItem_DLCArmor7,
-    eItem_PlaceholderArmor0,
-    eItem_PlaceholderArmor1,
+    eItem_ArmorCovertOps,
     eItem_END_ARMOR,
     eItem_BEGIN_ITEMS,
     eItem_Medikit,
@@ -522,14 +591,19 @@ enum EItemType
     eItem_ArcThrower,
     eItem_TargetingModule,
     eItem_ReinforcedArmor,
+    eItem_RespiratorImplant,
+    eItem_BallisticModule,
+    eItem_ReaperRounds,
     eItem_END_ITEMS,
     eItem_BEGIN_GRENADES,
     eItem_FragGrenade,
     eItem_SmokeGrenade,
     eItem_FlashBang,
     eItem_AlienGrenade,
-    eItem_PlaceholderGrenade0,
-    eItem_PlaceholderGrenade1,
+    eItem_GhostGrenade,
+    eItem_GasGrenade,
+    eItem_NeedleGrenade,
+    eItem_MimicBeacon,
     eItem_BEGIN_ALIEN_GRENADES,
     eItem_SectoidGrenade,
     eItem_FloaterGrenade,
@@ -548,8 +622,6 @@ enum EItemType
     eItem_Firestorm,
     eItem_Skyranger,
     eItem_Satellite,
-    eItem_PlaceholderVehicle0,
-    eItem_PlaceholderVehicle1,
     eItem_END_VEHICLES,
     eItem_BEGIN_VEHICLE_UPGRADES,
     eItem_ShivMinigun,
@@ -559,8 +631,6 @@ enum EItemType
     eItem_SHIVDeck_I,
     eItem_SHIVDeck_II,
     eItem_SHIVDeck_III,
-    eItem_PlaceholderShivUpgrade0,
-    eItem_PlaceholderShivUpgrade1,
     eItem_BEGIN_SHIP_WEAPONS,
     eItem_IntWeap_I,
     eItem_IntWeap_II,
@@ -568,15 +638,11 @@ enum EItemType
     eItem_IntWeap_IV,
     eItem_IntWeap_V,
     eItem_IntWeap_VI,
-    eItem_PlaceholderIntWeapon0,
-    eItem_PlaceholderIntWeapon1,
     eItem_END_SHIP_WEAPONS,
     eItem_BEGIN_INTERCEPTOR_CONSUMABLES,
     eItem_IntConsumable_Dodge,
     eItem_IntConsumable_Boost,
     eItem_IntConsumable_Hit,
-    eItem_PlaceholderIntConsumable0,
-    eItem_PlaceholderIntConsumable1,
     eItem_END_INTERCEPTOR_CONSUMABLES,
     eItem_END_VEHICLE_UPGRADES,
     eItem_BEGIN_CORPSES,
@@ -613,6 +679,7 @@ enum EItemType
     eItem_Elerium115,
     eItem_AlienAlloys,
     eItem_WeaponFragment,
+    eItem_Meld,
     eItem_AlienEntertainment,
     eItem_AlienFood,
     eItem_AlienStasisTank,
@@ -629,12 +696,71 @@ enum EItemType
     eItem_DamagedHyperwaveBeacon,
     eItem_UFOFusionLauncher,
     eItem_PsiLink,
+    eItem_ExaltIntel,
     eItem_END_COLLECTIBLES,
     eItem_Base_Shard,
     eItem_Skeleton_Key,
     eItem_SectopodChestCannon,
+    eItem_XPACK_BEGIN_CORPSES,
+    eItem_MechtoidCore,
+    eItem_SeekerCorpse,
+    eItem_CorpsePlaceholder2,
+    eItem_XPACK_END_CORPSES,
+    eItem_BEGIN_MEC_ARMOR,
+    eItem_MecCivvies,
+    eItem_MecArmor1,
+    eItem_MecArmor2,
+    eItem_MecArmor3,
+    eItem_MecArmor1_Kinetic,
+    eItem_MecArmor1_Flamethrower,
+    eItem_MecArmor2_Kinetic_Grenade,
+    eItem_MecArmor2_Kinetic_Mist,
+    eItem_MecArmor2_Flamethrower_Grenade,
+    eItem_MecArmor2_Flamethrower_Mist,
+    eItem_MecArmor3_Kinetic_Grenade_Electro,
+    eItem_MecArmor3_Kinetic_Grenade_ProximityMine,
+    eItem_MecArmor3_Kinetic_Mist_Electro,
+    eItem_MecArmor3_Kinetic_Mist_ProximityMine,
+    eItem_MecArmor3_Flamethrower_Grenade_Electro,
+    eItem_MecArmor3_Flamethrower_Grenade_ProximityMine,
+    eItem_MecArmor3_Flamethrower_Mist_Electro,
+    eItem_MecArmor3_Flamethrower_Mist_ProximityMine,
+    eItem_END_MEC_ARMOR,
+    eItem_BEGIN_EXALT_WEAPONS,
+    eItem_ExaltAssaultRifle,
+    eItem_ExaltSniperRifle,
+    eItem_ExaltLMG,
+    eItem_ExaltLaserAssaultRifle,
+    eItem_ExaltLaserSniperRifle,
+    eItem_ExaltHeavyLaser,
+    eItem_ExaltRocketLauncher,
+    eItem_END_EXALT_WEAPONS,
     eItem_NullPrereq,
+    eItem_BEGIN_EXALT_COLLECTIBLES,
+    eItem_EXALTLoot1,
+    eItem_EXALTLoot2,
+    eItem_EXALTLoot3,
+    eItem_END_EXALT_COLLECTIBLES,
     eItem_MAX
+};
+
+enum EItemType_Info
+{
+    eItemInfo_None,
+    eItemInfo_MindShield,
+    eItemInfo_ChitinPlating,
+    eItemInfo_SCOPE,
+    eItemInfo_ReaperRounds,
+    eItemInfo_RespiratorImplant,
+    eItemInfo_Grapple,
+    eItemInfo_Flight,
+    eItemInfo_MecKineticArm,
+    eItemInfo_MecFlameThrower,
+    eItemInfo_MecGrenadeLauncher,
+    eItemInfo_MecRestorativeMist,
+    eItemInfo_MecElectroPulse,
+    eItemInfo_MecProximityMineLauncher,
+    eItemInfo_MAX
 };
 
 enum EUnitType
@@ -649,6 +775,7 @@ enum EUnitType
     UNIT_TYPE_Player,
     UNIT_TYPE_MPTeamOne,
     UNIT_TYPE_MPTeamTwo,
+    UNIT_TYPE_CovertOperative,
     UNIT_TYPE_MAX
 };
 
@@ -677,7 +804,7 @@ enum ECountry
     eCountry_Argentina,
     eCountry_Mexico,
     eCountry_SouthAfrica,
-    eCountry_SaudiArabia,
+    eCountry_Poland,
     eCountry_Ukraine,
     eCountry_Nigeria,
     eCountry_Venezuela,
@@ -772,6 +899,17 @@ enum ECharacter
     eChar_Outsider,
     eChar_EtherealUber,
     eChar_BattleScanner,
+    eChar_Mechtoid,
+    eChar_Mechtoid_Alt,
+    eChar_Seeker,
+    eChar_ExaltOperative,
+    eChar_ExaltSniper,
+    eChar_ExaltHeavy,
+    eChar_ExaltMedic,
+    eChar_ExaltEliteOperative,
+    eChar_ExaltEliteSniper,
+    eChar_ExaltEliteHeavy,
+    eChar_ExaltEliteMedic,
     eChar_MAX
 };
 
@@ -789,6 +927,7 @@ enum EPawnType
     ePawnType_FemaleLevelIIHeavy_UNUSED,
     ePawnType_FemaleLevelIIIHeavy_UNUSED,
     ePawnType_FemalePsi,
+    ePawnType_FemaleCovertOps,
     ePawnType_MaleLevelILight_UNUSED,
     ePawnType_Male_2_Skeleton,
     ePawnType_Male_3_Ghost,
@@ -799,6 +938,7 @@ enum EPawnType
     ePawnType_MaleLevelIIHeavy_UNUSED,
     ePawnType_MaleLevelIIIHeavy_UNUSED,
     ePawnType_MalePsi,
+    ePawnType_MaleCovertOps,
     ePawnType_HUMAN_END,
     ePawnType_Tank,
     ePawnType_Tank2,
@@ -824,6 +964,43 @@ enum EPawnType
     ePawnType_EtherealUber,
     ePawnType_ALIEN_END,
     ePawnType_BattleScanner,
+    ePawnType_XPACK_ALIEN_START,
+    ePawnType_Mechtoid,
+    ePawnType_Seeker,
+    ePawnType_XPACK_ALIEN_END,
+    ePawnType_MEC_START,
+    ePawnType_MecCivvies,
+    ePawnType_Female_MecCivvies,
+    ePawnType_MecMark1,
+    ePawnType_MecMark2,
+    ePawnType_MecMark3,
+    ePawnType_MEC_END,
+    ePawnType_EXALT_START,
+    ePawnType_ExaltOperative,
+    ePawnType_ExaltSniper,
+    ePawnType_ExaltHeavy,
+    ePawnType_ExaltMedic,
+    ePawnType_ExaltEliteOperative,
+    ePawnType_ExaltEliteSniper,
+    ePawnType_ExaltEliteHeavy,
+    ePawnType_ExaltEliteMedic,
+    ePawnType_EXALT_END,
+    ePawnType_GeneMod_START,
+    ePawnType_Female_2_Skeleton_GM,
+    ePawnType_Female_3_Ghost_GM,
+    ePawnType_Female_1_Kevlar_GM,
+    ePawnType_Female_2_Carapace_GM,
+    ePawnType_Female_3_Titan_GM,
+    ePawnType_Female_3_Archangel_GM,
+    ePawnType_FemalePsi_GM,
+    ePawnType_Male_2_Skeleton_GM,
+    ePawnType_Male_3_Ghost_GM,
+    ePawnType_Male_1_Kevlar_GM,
+    ePawnType_Male_2_Carapace_GM,
+    ePawnType_Male_3_Titan_GM,
+    ePawnType_Male_3_Archangel_GM,
+    ePawnType_MalePsi_GM,
+    ePawnType_GeneMod_END,
     ePawnType_Max
 };
 
@@ -882,6 +1059,9 @@ enum ELoadoutTypes
     eLoadout_Shiv2Laser,
     eLoadout_Shiv3Plasma,
     eLoadout_WeaponlessVIP,
+    eLoadout_MECMark1,
+    eLoadout_MECMark2,
+    eLoadout_MECMark3,
     eLoadout_HUMAN_END,
     eLoadout_ALIEN_BEGIN,
     eLoadout_Sectoid,
@@ -904,6 +1084,16 @@ enum ELoadoutTypes
     eLoadout_Outsider,
     eLoadout_Muton_LightPlasma,
     eLoadout_EtherealUber,
+    eLoadout_Mechtoid,
+    eLoadout_Seeker,
+    eLoadout_ExaltOperative,
+    eLoadout_ExaltSniper,
+    eLoadout_ExaltHeavy,
+    eLoadout_ExaltMedic,
+    eLoadout_ExaltEliteOperative,
+    eLoadout_ExaltEliteSniper,
+    eLoadout_ExaltEliteHeavy,
+    eLoadout_ExaltEliteMedic,
     eLoadout_ALIEN_END,
     eLoadout_Total,
     eLoadout_Invalid,
@@ -1096,6 +1286,20 @@ enum EArmorKit
     eKit_Deco_Psi10,
     eKit_Deco_Psi11,
     eKit_Deco_Psi_END,
+    eKit_Deco_Genemod_START,
+    eKit_Deco_Genemod0,
+    eKit_Deco_Genemod1,
+    eKit_Deco_Genemod2,
+    eKit_Deco_Genemod3,
+    eKit_Deco_Genemod4,
+    eKit_Deco_Genemod5,
+    eKit_Deco_Genemod6,
+    eKit_Deco_Genemod7,
+    eKit_Deco_Genemod8,
+    eKit_Deco_Genemod9,
+    eKit_Deco_Genemod10,
+    eKit_Deco_Genemod11,
+    eKit_Deco_Genemod_END,
     eKit_MAX
 };
 
@@ -1140,7 +1344,7 @@ enum ECharacterSpeech
     eCharSpeech_FlashbangThrown,
     eCharSpeech_FiringRocket,
     eCharSpeech_GhostModeActivated,
-    eCharSpeech_GhostRevealed,
+    eCharSpeech_CollateralDamage,
     eCharSpeech_JetPackDeactivated,
     eCharSpeech_ArcThrower,
     eCharSpeech_RepairSHIV,
@@ -1158,14 +1362,14 @@ enum ECharacterSpeech
     eCharSpeech_Died,
     eCharSpeech_Flanked,
     eCharSpeech_Suppressed,
-    eCharSpeech_Confused,
+    eCharSpeech_ElectroPulse,
     eCharSpeech_PsiControlled,
-    eCharSpeech_PsiControlling,
-    eCharSpeech_PsiControllingFailed,
-    eCharSpeech_PanickedTarget,
-    eCharSpeech_PanickingTargetFailed,
-    eCharSpeech_LootSpotted,
-    eCharSpeech_LootCaptured,
+    eCharSpeech_Flamethrower,
+    eCharSpeech_JetBoots,
+    eCharSpeech_KineticStrike,
+    eCharSpeech_OneForAll,
+    eCharSpeech_MeldSpotted,
+    eCharSpeech_MeldCollected,
     eCharSpeech_CivilianRescued,
     eCharSpeech_AlienRetreat,
     eCharSpeech_AlienMoving,
@@ -1173,20 +1377,20 @@ enum ECharacterSpeech
     eCharSpeech_AlienReinforcements,
     eCharSpeech_AlienSighting,
     eCharSpeech_RunAndGun,
-    eCharSpeech_SpreadShot,
-    eCharSpeech_PrecisionShot,
+    eCharSpeech_ProximityMine,
+    eCharSpeech_PrecisionShot_DEPRECATED,
     eCharSpeech_DisablingShot,
-    eCharSpeech_Executioner,
-    eCharSpeech_DoubleTap,
-    eCharSpeech_InTheZone,
+    eCharSpeech_Executioner_DEPRECATED,
+    eCharSpeech_DoubleTap_DEPRECATED,
+    eCharSpeech_InTheZone_DEPRECATED,
     eCharSpeech_ShredderRocket,
-    eCharSpeech_HotPotato,
+    eCharSpeech_HotPotato_DEPRECATED,
     eCharSpeech_PsionicsMindfray,
     eCharSpeech_PsionicsPanic,
     eCharSpeech_PsionicsInspiration,
     eCharSpeech_PsionicsTelekineticField,
     eCharSpeech_GrapplingHook,
-    eCharSpeech_GainingElevation,
+    eCharSpeech_GainingElevation_DEPRECATED,
     eCharSpeech_GenericResponse,
     eCharSpeech_SoldierControlled,
     eCharSpeech_StunnedAlien,
@@ -1196,7 +1400,9 @@ enum ECharacterSpeech
     eCharSpeech_Poisoned,
     eCharSpeech_HiddenMovement,
     eCharSpeech_HiddenMovementVox,
-    eCharSpeech_CriticallyWounded,
+    eCharSpeech_CriticallyWounded_DEPRECATED,
+    eCharSpeech_ExaltChatter,
+    eCharSpeech_Strangled,
     eCharSpeech_COUNT,
     eCharSpeech_MAX
 };
@@ -1218,6 +1424,9 @@ enum ECharacterVoice
     eCharVoice_FemaleSoldier1,
     eCharVoice_FemaleSoldier2,
     eCharVoice_FemaleSoldier3,
+    eCharVoice_FemaleSoldier4,
+    eCharVoice_FemaleSoldier5,
+    eCharVoice_FemaleSoldier6,
     eCharVoice_Female_END,
     eCharVoice_Brash_Male_BEGIN,
     eCharVoice_MaleSoldier1_Brash,
@@ -1252,26 +1461,38 @@ enum ECharacterVoice
     eCharVoice_SectopodDrone,
     eCharVoice_Zombie,
     eCharVoice_Alien_END,
-    eCharVoice_FemaleSoldier4,
-    eCharVoice_FemaleSoldier5,
-    eCharVoice_FemaleSoldier6,
+    eCharVoice_MaleMec_BEGIN,
+    eCharVoice_MaleMec1,
+    eCharVoice_MaleMec2,
+    eCharVoice_MaleMec_END,
+    eCharVoice_FemaleMec_BEGIN,
+    eCharVoice_FemaleMec1,
+    eCharVoice_FemaleMec2,
+    eCharVoice_FemaleMec_END,
+    eCharVoice_MaleBlueshirt_BEGIN,
+    eCharVoice_MaleBlueshirt1,
+    eCharVoice_MaleBlueshirt_END,
+    eCharVoice_FemaleBlueshirt_BEGIN,
+    eCharVoice_FemaleBlueshirt1,
+    eCharVoice_FemaleBlueshirt_END,
     eCharVoice_MAX
 };
 
-enum ECharacterAttitude
+enum ECharacterLanguage
 {
-    eAttitude_Professional,
-    eAttitude_Brash,
-    eAttitude_MAX
+    eCharLanguage_English,
+    eCharLanguage_French,
+    eCharLanguage_German,
+    eCharLanguage_Italian,
+    eCharLanguage_Polish,
+    eCharLanguage_Russian,
+    eCharLanguage_Spanish,
+    eCharLanguage_MAX
 };
 
 enum ETipTypes
 {
     eTip_Tactical,
-    eTip_Strategy,
-    eTip_PC,
-    eTip_Console,
-    eTip_MP,
     eTip_MAX
 };
 
@@ -1309,45 +1530,19 @@ enum EGameplayTips_Tactical
     eTTips_Suppression,
     eTTips_Health,
     eTTips_HealthII,
+    eTTips_Pistol_IV,
+    eTTips_MEC_Slow,
+    eTTips_Reaper,
+    eTTips_Flashbang,
+    eTTips_CollateralDamage,
+    eTTips_MEC_Health,
+    eTTips_MEC_Healing,
+    eTTips_CovertGeneMods,
+    eTTips_GeneMods_I,
+    eTTips_CommHack,
+    eTTips_Meld_I,
+    eTTips_Meld_II,
     eTTips_MAX
-};
-
-enum EGameplayTips_Strategy
-{
-    eSTips_Satellites,
-    eSTips_Panic,
-    eSTips_GreyMarket,
-    eSTips_SatHunters,
-    eSTips_Abductions,
-    eSTips_Satellites_II,
-    eSTips_OTS,
-    eSTips_TerrorReward,
-    eSTips_Uplink,
-    eSTips_Adjacent,
-    eSTips_Workshop,
-    eSTips_Laboratory,
-    eSTips_MAX
-};
-
-enum EGameplayTips_PC
-{
-    ePTips_RightClick,
-    ePTips_Zoom,
-    ePTips_MAX
-};
-
-enum EGameplayTips_Console
-{
-    eCTips_EndTurn,
-    eCTips_Zoom,
-    eCTips_MAX
-};
-
-enum EGameplayTips_MP
-{
-    eMTips_LessPointsFirstMove,
-    eMTips_Bubonic,
-    eMTips_MAX
 };
 
 enum ETicker_Narratives
@@ -1357,6 +1552,7 @@ enum ETicker_Narratives
     eTickerNarrative_CodeBroken,
     eTickerNarrative_BaseAssaulted,
     eTickerNarrative_PsiSoldier,
+    eTickerNarrative_EXALTRaid,
     eTickerNarrative_MAX
 };
 
@@ -1369,6 +1565,7 @@ enum ETicker_Types
     eTicker_FundingCouncil,
     eTicker_Withdraw,
     eTicker_Narrative,
+    eTicker_Exalt,
     eTicker_MAX
 };
 
@@ -1388,21 +1585,14 @@ enum EUnitVisibilityInformation
     eUVI_NotVisible_Default,
     eUVI_NotVisible_TargetOffBattlefield,
     eUVI_NotVisible_TargetIsGhost,
-    eUVI_NotVisible_TargetOutOfRange,
     eUVI_NotVisibleEND,
     eUVI_VisibleBEGIN,
-    eUVI_Visible_TargetForcedVisible,
-    eUVI_Visible_SourcePeekForwardOverLedge_TargetDefault,
     eUVI_Visible_SourceDefault_TargetDefault,
-    eUVI_Visible_SourceDefault_TargetPeekLeft0,
-    eUVI_Visible_SourceDefault_TargetPeekRight0,
-    eUVI_Visible_SourcePeekLeft_TargetDefault,
-    eUVI_Visible_SourcePeekLeft_TargetPeekLeft0,
-    eUVI_Visible_SourcePeekLeft_TargetPeekRight0,
-    eUVI_Visible_SourcePeekRight_TargetDefault,
-    eUVI_Visible_SourcePeekRight_TargetPeekLeft0,
-    eUVI_Visible_SourcePeekRight_TargetPeekRight0,
     eUVI_VisibleEND,
+    eUVI_PropertiesBEGIN,
+    eUVI_InBioelectricSkinRange,
+    eUVI_TargetOutOfRange,
+    eUVI_PropertiesEND,
     eUVI_MAX
 };
 
@@ -1413,6 +1603,43 @@ enum EUnitVisibilityInformation_CoverPoint
     eUVICP_CoverPointC,
     eUVICP_CoverPointD,
     eUVICP_MAX
+};
+
+enum EMedalType
+{
+    eMedal_None,
+    eMedal_UrbanCombat,
+    eMedal_Defender,
+    eMedal_InternationalService,
+    eMedal_Council,
+    eMedal_Terra,
+    eMedal_MAX
+};
+
+enum EDressUniform
+{
+    eDressUni_None,
+    eDressUni_Male,
+    eDressUni_Female,
+    eDressUni_MaleMec,
+    eDressUni_FemaleMec,
+    eDressUni_MAX
+};
+
+enum EDressMedal
+{
+    eDressMedal_None,
+    eDressMedal_UrbanCombat_M,
+    eDressMedal_Defender_M,
+    eDressMedal_InternationalService_M,
+    eDressMedal_Council_M,
+    eDressMedal_Terra_M,
+    eDressMedal_UrbanCombat_F,
+    eDressMedal_Defender_F,
+    eDressMedal_InternationalService_F,
+    eDressMedal_Council_F,
+    eDressMedal_Terra_F,
+    eDressMedal_MAX
 };
 
 struct native TerrainMapping
@@ -1490,6 +1717,20 @@ struct native CharacterPawnPair
     }
 };
 
+// struct native XGUnitVisibilityInformation
+// {
+    // var XGUnitNativeBase kUnit;
+    // var int kVis[EUnitVisibilityInformation_CoverPoint];
+
+    // structdefaultproperties
+    // {
+        // kUnit=none
+        // kVis[0]=0
+        // kVis[1]=0
+        // kVis[2]=0
+        // kVis[3]=0
+    // }
+// };
 
 
 defaultproperties
@@ -1514,6 +1755,8 @@ defaultproperties
     arrFacilityMapping(11)=(eType=EFacilityType.eFacility_DeusEx,MapName="Addon_GollopChamber",strBinkReveal="TP_F_GollopChamber.bik")
     arrFacilityMapping(12)=(eType=EFacilityType.eFacility_ThermalPower,MapName="Addon_ThermalPower",strBinkReveal="TP_F_TermalPower.bik")
     arrFacilityMapping(13)=(eType=EFacilityType.eFacility_EleriumGenerator,MapName="Addon_EleriumPowerGenerator",strBinkReveal="TP_F_EleriumPower.bik")
+    arrFacilityMapping(14)=(eType=EFacilityType.eFacility_GeneticsLab,MapName="Addon_Genelab",strBinkReveal="XEW_Flyin_Genetics.bk2")
+    arrFacilityMapping(15)=(eType=EFacilityType.eFacility_CyberneticsLab,MapName="Addon_Cyberneticslab",strBinkReveal="XEW_Flyin_Cybernetics.bk2")
     CharacterToPawnMap(0)=(CharacterType=ECharacter.eChar_Sectoid,PawnType=EPawnType.ePawnType_Sectoid)
     CharacterToPawnMap(1)=(CharacterType=ECharacter.eChar_SectoidCommander,PawnType=EPawnType.ePawnType_Sectoid_Commander)
     CharacterToPawnMap(2)=(CharacterType=ECharacter.eChar_Floater,PawnType=EPawnType.ePawnType_Floater)
@@ -1530,24 +1773,56 @@ defaultproperties
     CharacterToPawnMap(13)=(CharacterType=ECharacter.eChar_Drone,PawnType=EPawnType.ePawnType_SectopodDrone)
     CharacterToPawnMap(14)=(CharacterType=ECharacter.eChar_Zombie,PawnType=EPawnType.ePawnType_Zombie)
     CharacterToPawnMap(15)=(CharacterType=ECharacter.eChar_Outsider,PawnType=EPawnType.ePawnType_Outsider)
-    CharacterToPawnMap(16)=(CharacterType=ECharacter.eChar_Soldier)
-    CharacterToPawnMap(17)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_2_Skeleton)
-    CharacterToPawnMap(18)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Ghost)
-    CharacterToPawnMap(19)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_1_Kevlar)
-    CharacterToPawnMap(20)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_2_Carapace)
-    CharacterToPawnMap(21)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Titan)
-    CharacterToPawnMap(22)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Archangel)
-    CharacterToPawnMap(23)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_FemalePsi)
-    CharacterToPawnMap(24)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_2_Skeleton)
-    CharacterToPawnMap(25)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Ghost)
-    CharacterToPawnMap(26)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_1_Kevlar)
-    CharacterToPawnMap(27)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_2_Carapace)
-    CharacterToPawnMap(28)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Titan)
-    CharacterToPawnMap(29)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Archangel)
-    CharacterToPawnMap(30)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MalePsi)
-    CharacterToPawnMap(31)=(CharacterType=ECharacter.eChar_Tank,PawnType=EPawnType.ePawnType_Tank)
-    CharacterToPawnMap(32)=(CharacterType=ECharacter.eChar_Tank,PawnType=EPawnType.ePawnType_Tank2)
-    CharacterToPawnMap(33)=(CharacterType=ECharacter.eChar_Tank,PawnType=EPawnType.ePawnType_Tank3)
-    CharacterToPawnMap(34)=(CharacterType=ECharacter.eChar_BattleScanner,PawnType=EPawnType.ePawnType_BattleScanner)
-    CharacterToPawnMap(35)=(CharacterType=ECharacter.eChar_Civilian,PawnType=EPawnType.ePawnType_Civilian)
+    CharacterToPawnMap(16)=(CharacterType=ECharacter.eChar_Mechtoid,PawnType=EPawnType.ePawnType_Mechtoid)
+    CharacterToPawnMap(17)=(CharacterType=ECharacter.eChar_Mechtoid_Alt,PawnType=EPawnType.ePawnType_Mechtoid)
+    CharacterToPawnMap(18)=(CharacterType=ECharacter.eChar_Seeker,PawnType=EPawnType.ePawnType_Seeker)
+    CharacterToPawnMap(19)=(CharacterType=ECharacter.eChar_ExaltOperative,PawnType=EPawnType.ePawnType_ExaltOperative)
+    CharacterToPawnMap(20)=(CharacterType=ECharacter.eChar_ExaltSniper,PawnType=EPawnType.ePawnType_ExaltSniper)
+    CharacterToPawnMap(21)=(CharacterType=ECharacter.eChar_ExaltHeavy,PawnType=EPawnType.ePawnType_ExaltHeavy)
+    CharacterToPawnMap(22)=(CharacterType=ECharacter.eChar_ExaltMedic,PawnType=EPawnType.ePawnType_ExaltMedic)
+    CharacterToPawnMap(23)=(CharacterType=ECharacter.eChar_ExaltEliteOperative,PawnType=EPawnType.ePawnType_ExaltEliteOperative)
+    CharacterToPawnMap(24)=(CharacterType=ECharacter.eChar_ExaltEliteSniper,PawnType=EPawnType.ePawnType_ExaltEliteSniper)
+    CharacterToPawnMap(25)=(CharacterType=ECharacter.eChar_ExaltEliteHeavy,PawnType=EPawnType.ePawnType_ExaltEliteHeavy)
+    CharacterToPawnMap(26)=(CharacterType=ECharacter.eChar_ExaltEliteMedic,PawnType=EPawnType.ePawnType_ExaltEliteMedic)
+    CharacterToPawnMap(27)=(CharacterType=ECharacter.eChar_Soldier)
+    CharacterToPawnMap(28)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_2_Skeleton)
+    CharacterToPawnMap(29)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Ghost)
+    CharacterToPawnMap(30)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_1_Kevlar)
+    CharacterToPawnMap(31)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_2_Carapace)
+    CharacterToPawnMap(32)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Titan)
+    CharacterToPawnMap(33)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Archangel)
+    CharacterToPawnMap(34)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_FemalePsi)
+    CharacterToPawnMap(35)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_FemaleCovertOps)
+    CharacterToPawnMap(36)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_2_Skeleton)
+    CharacterToPawnMap(37)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Ghost)
+    CharacterToPawnMap(38)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_1_Kevlar)
+    CharacterToPawnMap(39)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_2_Carapace)
+    CharacterToPawnMap(40)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Titan)
+    CharacterToPawnMap(41)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Archangel)
+    CharacterToPawnMap(42)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MalePsi)
+    CharacterToPawnMap(43)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MaleCovertOps)
+    CharacterToPawnMap(44)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MecCivvies)
+    CharacterToPawnMap(45)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_MecCivvies)
+    CharacterToPawnMap(46)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MecMark1)
+    CharacterToPawnMap(47)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MecMark2)
+    CharacterToPawnMap(48)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MecMark3)
+    CharacterToPawnMap(49)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_2_Skeleton_GM)
+    CharacterToPawnMap(50)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Ghost_GM)
+    CharacterToPawnMap(51)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_1_Kevlar_GM)
+    CharacterToPawnMap(52)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_2_Carapace_GM)
+    CharacterToPawnMap(53)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Titan_GM)
+    CharacterToPawnMap(54)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Female_3_Archangel_GM)
+    CharacterToPawnMap(55)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_FemalePsi_GM)
+    CharacterToPawnMap(56)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_2_Skeleton_GM)
+    CharacterToPawnMap(57)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Ghost_GM)
+    CharacterToPawnMap(58)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_1_Kevlar_GM)
+    CharacterToPawnMap(59)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_2_Carapace_GM)
+    CharacterToPawnMap(60)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Titan_GM)
+    CharacterToPawnMap(61)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_Male_3_Archangel_GM)
+    CharacterToPawnMap(62)=(CharacterType=ECharacter.eChar_Soldier,PawnType=EPawnType.ePawnType_MalePsi_GM)
+    CharacterToPawnMap(63)=(CharacterType=ECharacter.eChar_Tank,PawnType=EPawnType.ePawnType_Tank)
+    CharacterToPawnMap(64)=(CharacterType=ECharacter.eChar_Tank,PawnType=EPawnType.ePawnType_Tank2)
+    CharacterToPawnMap(65)=(CharacterType=ECharacter.eChar_Tank,PawnType=EPawnType.ePawnType_Tank3)
+    CharacterToPawnMap(66)=(CharacterType=ECharacter.eChar_BattleScanner,PawnType=EPawnType.ePawnType_BattleScanner)
+    CharacterToPawnMap(67)=(CharacterType=ECharacter.eChar_Civilian,PawnType=EPawnType.ePawnType_Civilian)
 }
