@@ -511,6 +511,10 @@ var array<SmokeEmitter> SmokeEmitters;
 var transient array<Vector> PotentialFireColumns;
 //var delegate<CanSeeLocationCallback> __CanSeeLocationCallback__Delegate;
 
+native function UpdateVisibility(optional bool bLog, optional bool bIncremental);
+native static function XComWorldData GetWorldData();
+native function BuildWorldData(XComLevelVolume LevelVolume);
+
 
 defaultproperties
 {

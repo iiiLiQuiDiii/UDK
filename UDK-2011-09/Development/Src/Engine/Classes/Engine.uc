@@ -1017,6 +1017,12 @@ native static final function bool BasicSaveObject(Object Obj, string Pathname, b
  */
 native static final function bool BasicLoadObject(Object Obj, string Pathname, bool bIsSaveGame, int Version);
 
+function Object GetContentManager()
+{
+    return none;
+    //return ReturnValue;    
+}
+
 defaultproperties
 {
 	C_WorldBox=(R=0,G=0,B=40,A=255)
