@@ -34,7 +34,7 @@ var array<Actor> m_aCachedActors;
 var array<Emitter> m_aCachedEmitters;
 var() XComLevelActor m_kProxyGeometry;
 var Material m_kProxyGeometryMaterial;
-var() editconst int FloorNumber;
+var() int FloorNumber;
 var transient XComBuildingVolume CachedBuildingVolume;
 
 

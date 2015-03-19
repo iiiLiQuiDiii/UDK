@@ -45,6 +45,9 @@ public:
 	UBOOL IgnoreBlockingBy(const AActor* Other) const;
 }
 
+native function ForceDestroy();
+
+
 simulated event PostBeginPlay()
 {
 	Super.PostBeginPlay();

@@ -96,6 +96,8 @@ var() editconst class<XComDamageType> DestroyedDamageClass;
 var const name StateNames[4];
 var transient string LastDamageClass;
 
+native simulated function SetStaticMesh(StaticMesh NewMesh, optional Vector NewTranslation, optional Rotator NewRotation, optional Vector NewScale3D);
+simulated function ForceDLELighting();
 
 defaultproperties
 {

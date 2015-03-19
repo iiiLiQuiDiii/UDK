@@ -37,6 +37,10 @@ var() Actor HidingPartner;
 var(Cover) XComCoverInterface.ECoverForceFlag CoverForceFlag;
 var(Cover) XComCoverInterface.ECoverForceFlag CoverIgnoreFlag;
 
+
+native simulated function SetHideableFlag(bool bShouldHide);
+native simulated function SetPrimitiveHidden(bool bInHidden);
+
 defaultproperties
 {
     begin object name=StaticMeshComponent0

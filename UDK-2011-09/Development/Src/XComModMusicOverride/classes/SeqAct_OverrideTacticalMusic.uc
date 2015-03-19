@@ -38,7 +38,7 @@ event Activated()
 		}
 		  
 	}
-   
+          ActivateOutputLink(0);
 }
 
 

@@ -110,7 +110,8 @@ const REP_RBLOCATION_ERROR_TOLERANCE_SQ = 16.0f;
  */
 
 /** The actor components which are attached directly to the actor's location/rotation. */
-var private const array<ActorComponent>	Components;
+//var private const array<ActorComponent>	Components;
+var  array<ActorComponent>	Components;
 
 /** All actor components which are directly or indirectly attached to the actor. */
 var private transient const array<ActorComponent> AllComponents;
@@ -215,14 +216,14 @@ struct native TimerData
 var const array<TimerData>			Timers;			// list of currently active timers
 
 // Flags.
-var const public{private} bool bStatic;	// Does not move or change over time. It is only safe to change this property in defaultproperties.
+var  public{private} bool bStatic;	// Does not move or change over time. It is only safe to change this property in defaultproperties.
 
 /** If this is True, all PrimitiveComponents of the actor are hidden.  If this is false, only PrimitiveComponents with HiddenGame=True are hidden. */
-var(Display) const bool	bHidden;
+var(Display)  bool	bHidden;
 
-var			  const	bool	bNoDelete;			// Cannot be deleted during play.
-var			  const	bool	bDeleteMe;			// About to be deleted.
-var transient const bool	bTicked;			// Actor has been updated.
+var			  	bool	bNoDelete;			// Cannot be deleted during play.
+var			  	bool	bDeleteMe;			// About to be deleted.
+var transient  bool	bTicked;			// Actor has been updated.
 var const				bool    bOnlyOwnerSee;		// Only owner can see this actor.
 
 /** if set, this Actor and all of its components are not ticked. Modify via SetTickIsDisabled()

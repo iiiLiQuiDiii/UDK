@@ -16,4 +16,4 @@ delegate OnObjectLoaded(Object LoadedArchetype)
 
 native final function RequestObjectAsync(string Object, optional Object CallbackObject, optional delegate<OnObjectLoaded> Callback);
 
-	
+native final function Object GetGameContent(string str);
