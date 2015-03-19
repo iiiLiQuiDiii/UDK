@@ -3809,3 +3809,10 @@ UDK-2011-09/UDKGame/Content/Maps/UT3/VCTF-Necropolis.udk
 UDK-2011-09/UDKGame/Config/UDKEngine.ini
 *.log
 *.dmp
+UDK-2011-09/UDKGame/CookedPC/UT3/GFx/UDKFrontEnd_SF.upk
+UDK-2011-09/UDKGame/CookedPC/XComMapCleaner.u
+UDK-2011-09/UDKGame/CookedPC/XComModMusicOverride.u
+UDK-2011-09/UDKGame/CookedPC/XComUDK.u
+UDK-2011-09/UDKGame/Script/XComMapCleaner.u
+UDK-2011-09/UDKGame/Script/XComModMusicOverride.u
+UDK-2011-09/UDKGame/Script/XComUDK.u
