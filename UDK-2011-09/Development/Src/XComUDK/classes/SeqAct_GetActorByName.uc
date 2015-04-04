@@ -30,7 +30,7 @@ event Activated()
             }            
         }        
     
-       
+       ActivateOutputLink(0);
 }
 
 defaultproperties

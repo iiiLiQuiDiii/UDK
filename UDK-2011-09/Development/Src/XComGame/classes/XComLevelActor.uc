@@ -13,7 +13,7 @@ class XComLevelActor extends StaticMeshActor
 
 struct native VisibilityBlocking
 {
-    var() const bool bBlockUnitVisibility;
+    var() bool bBlockUnitVisibility;
 
     structdefaultproperties
     {
@@ -24,8 +24,8 @@ struct native VisibilityBlocking
 //var private native const noexport Pointer VfTable_IXComCoverInterface;
 var() const editconst export editinline XComFloorComponent FloorComponent;
 var() VisibilityBlocking VisibilityBlockingData;
-var() const bool HideableWhenBlockingObjectOfInterest;
-var() const bool bIgnoreFor3DCursorCollision;
+var() bool HideableWhenBlockingObjectOfInterest;
+var() bool bIgnoreFor3DCursorCollision;
 var(Cover) bool bAlwaysConsiderForCover;
 var(Cover) bool bCanClimbOver;
 var(Cover) bool bCanClimbOnto;

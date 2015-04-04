@@ -7,7 +7,7 @@ var() name ArchetypeName;
 	
 event Activated()
 {
-    local XComDecoFracLevelActor curActor;
+    local XComFracLevelActor curActor;
 	local DestructibleCacheEntry entry;
 	local array<DestructibleCacheEntry> remove_list;
 	
@@ -19,7 +19,7 @@ event Activated()
 	{
 			if(curDestrActor.ObjectArchetype.Name == ArchetypeName)
 			{
-				foreach class'Engine'.static.GetCurrentWorldInfo().AllActors(class'XComDecoFracLevelActor', curActor)
+				foreach class'Engine'.static.GetCurrentWorldInfo().AllActors(class'XComFracLevelActor', curActor)
 				{
 			
 					for (iii=0; iii<curActor.FragmentColumns.length;iii++ )	

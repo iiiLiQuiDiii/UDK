@@ -16,6 +16,7 @@ var() Vector DrawScale3D ;
 event Activated()
 {
 	Target.SetDrawScale3D(DrawScale3D);
+	 ActivateOutputLink(0);
 }
 
 defaultproperties

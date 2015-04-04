@@ -12,7 +12,8 @@ class XComDamageType extends DamageType
 var() bool bCausesFire;
 var() bool bDamageUnits;
 
-
+static function bool CausesSurroundingAreaDamage(class<DamageType> inDamageType);
+native static final function bool DealDamage(out DamageEvent InDamageEvent);
 defaultproperties
 {
     bDamageUnits=true

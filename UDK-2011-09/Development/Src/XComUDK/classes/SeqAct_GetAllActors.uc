@@ -6,6 +6,8 @@ enum EActorFilterType
 {
     FilterByClass,
     FilterByArchetype,
+	FilterByLayer,
+	FilterByTag,
     EActorFilterType_MAX
 };
 
@@ -36,7 +38,7 @@ event Activated()
 
          foreach class'Engine'.static.GetCurrentWorldInfo().AllActors(class'Actor', curActor)
         {
-            if( ((curActor.IsA(ActorFilter) && ActorFilterType == FilterByClass) || (curActor.ObjectArchetype.Name == ActorFilter && ActorFilterType == FilterByArchetype)))
+            if ((curActor.IsA(ActorFilter) && ActorFilterType == FilterByClass) || (curActor.ObjectArchetype.Name == ActorFilter && ActorFilterType == FilterByArchetype)|| (curActor.Layer == ActorFilter && ActorFilterType == FilterByLayer)|| (curActor.Tag == ActorFilter && ActorFilterType == FilterByTag))
 			{
 			  SeqVar_ObjectList.ObjList.AddItem(curActor);
 			  ObjectsFound++;

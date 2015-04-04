@@ -23,7 +23,7 @@ var() bool DamageOverTime;
   //  DestroyActor,
    // Hide,
 var() bool PlayEffectCue;
-	//PlaySoundCue,
+var() bool PlaySoundCue;
 var() bool RadialDamage;
 	//RemoteEvent,
 	//SwapMaterial,
@@ -58,6 +58,7 @@ event Activated()
 		if ( 
 			(RadialDamage  && curEvent.Action.IsA( 'XComDestructibleActor_Action_RadialDamage')) ||
 			(PlayEffectCue && curEvent.Action.IsA( 'XComDestructibleActor_Action_PlayEffectCue')) ||
+			(PlaySoundCue  && curEvent.Action.IsA( 'XComDestructibleActor_Action_PlaySoundCue')) ||
 			(SwapStaticMesh && curEvent.Action.IsA( 'XComDestructibleActor_Action_SwapStaticMesh'))
 		)
 		{
