@@ -10,6 +10,11 @@ class XComGameReplicationInfo extends GameReplicationInfo
     native(Core)
     config(Game);
 
+	
+var repnotify XGTacticalGameCore m_kGameCore;
+
+	simulated function DoRemoteEvent(name Evt, optional bool bRunOnClient);
+	
 simulated function XComSoundManager GetSoundManager()
 {
  

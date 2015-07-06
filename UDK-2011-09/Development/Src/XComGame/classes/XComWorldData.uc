@@ -515,6 +515,7 @@ native function UpdateVisibility(optional bool bLog, optional bool bIncremental)
 native static function XComWorldData GetWorldData();
 native function BuildWorldData(XComLevelVolume LevelVolume);
 
+native function bool CanSeeActorToLocation(Actor FromActor, const out Vector ToLocation, optional bool bUseLineChecks);
 
 defaultproperties
 {

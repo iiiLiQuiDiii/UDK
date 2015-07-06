@@ -26,7 +26,39 @@ enum EDifficultyLevel
 
 enum EGameplayOption
 {
-    eGO_RandomDamage,
+	SW_Option_0 ,
+	SW_Option_1 ,
+	SW_Option_2 ,
+	SW_Option_3 ,
+	SW_Option_4 ,
+	SW_Option_5 ,
+	SW_Option_6 ,
+	SW_Option_7 ,
+	SW_Option_8 ,
+	SW_Option_9 ,
+	SW_Option_10 ,
+	SW_Option_11 ,
+	SW_Option_12 ,
+	SW_Option_13 ,
+	SW_Option_14 ,
+	SW_Option_15 ,
+	SW_Option_16 ,
+	SW_Option_17 ,
+	SW_Option_18 ,
+	SW_Option_19 ,
+	SW_Option_20 ,
+	SW_Option_21 ,
+	SW_Option_22 ,
+	SW_Option_23,
+	SW_Option_24 ,
+	SW_Option_25 ,
+	SW_Option_26 ,
+	SW_Option_27 ,	
+	SW_Option_28 ,
+	SW_Option_29 ,
+	SW_Option_30 ,
+	SW_Option_31 ,
+	eGO_RandomDamage,
     eGO_RandomFunding,
     eGO_RandomRookieStats,
     eGO_RandomStatProgression,
@@ -49,6 +81,7 @@ enum EGameplayOption
     eGO_MindHatesMatter,
     eGO_MAX
 };
+	
 
 enum EFoundryTech
 {

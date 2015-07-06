@@ -11,9 +11,17 @@ class SeqAct_OverrideTacticalMusic extends SequenceAction
 	;
 
 	
-var string CombatCueName;
-var string BackgroundCueName;
+var() string CombatCueName;
+var() string BackgroundCueName;
 
+function Loaded(Object LoadedObject)
+{
+	local XComTacticalSoundManager sndmgr;
+	sndmgr = XComTacticalSoundManager(XComGameReplicationInfo(class'Engine'.static.GetCurrentWorldInfo().GRI).GetSoundManager());
+		
+	sndmgr.OnBackgroundLoaded(LoadedObject);
+	sndmgr.StartBackgroundChannel();
+}
 
 event Activated()
 {
@@ -33,8 +41,8 @@ event Activated()
 
 		if (BackgroundCueName != "")
 		{
-			 XComContentManager(class'Engine'.static.GetEngine().GetContentManager()).RequestObjectAsync(BackgroundCueName, self,sndmgr.OnBackgroundLoaded);
-			 sndmgr.StartBackgroundChannel();
+			 XComContentManager(class'Engine'.static.GetEngine().GetContentManager()).RequestObjectAsync(BackgroundCueName, self,Loaded);
+			 
 		}
 		  
 	}

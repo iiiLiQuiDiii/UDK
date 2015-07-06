@@ -29,7 +29,7 @@ var() bool RadialDamage;
 	//SwapMaterial,
 var() bool SwapStaticMesh;
 	//SwapSkeletalMesh,
-	//ToggleEffect,
+var() bool ToggleEffect;
 	//ToggleLight,
 	//ToggleSoundCue,
 	
@@ -59,6 +59,7 @@ event Activated()
 			(RadialDamage  && curEvent.Action.IsA( 'XComDestructibleActor_Action_RadialDamage')) ||
 			(PlayEffectCue && curEvent.Action.IsA( 'XComDestructibleActor_Action_PlayEffectCue')) ||
 			(PlaySoundCue  && curEvent.Action.IsA( 'XComDestructibleActor_Action_PlaySoundCue')) ||
+			(ToggleEffect  && curEvent.Action.IsA( 'XComDestructibleActor_Action_ToggleEffect')) ||
 			(SwapStaticMesh && curEvent.Action.IsA( 'XComDestructibleActor_Action_SwapStaticMesh'))
 		)
 		{

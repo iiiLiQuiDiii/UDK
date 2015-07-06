@@ -83,7 +83,7 @@ var	const noimport transient		array<PortalVolume>		PortalVolumes;
 var	const noimport transient		array<EnvironmentVolume>    EnvironmentVolumes;
 
 /** Level collection. ULevels are referenced by FName (Package name) to avoid serialized references. Also contains offsets in world units */
-var(WorldInfo) const editconst editinline array<LevelStreaming> StreamingLevels;
+var(WorldInfo) editinline array<LevelStreaming> StreamingLevels;
 
 /**
  * This is a bool on the level which is set when a light that needs to have lighting rebuilt

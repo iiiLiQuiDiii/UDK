@@ -73,6 +73,8 @@ var(SwapStaticMesh) XComDestructibleActor_Action_SwapStaticMesh.EMaterialOverrid
 
 var(DestroyActor) Actor TargetActor;
 
+var(ToggleEffect) Emitter Emitter;
+
 event Activated()
 {
 	local DestructibleActorEvent devent;
@@ -132,7 +134,10 @@ event Activated()
 			Action = new(Target) class'XComDestructibleActor_Action_DestroyActor';
 			XComDestructibleActor_Action_DestroyActor(Action).TargetActor = TargetActor;
 			break;
-			
+		case ToggleEffect:
+			Action = new(Target) class'XComDestructibleActor_Action_ToggleEffect';
+			XComDestructibleActor_Action_ToggleEffect(Action).Emitter = Emitter;
+			break;	
 			
 	}
 	

@@ -11,19 +11,16 @@ class SeqAct_ChangeActorToughness extends SequenceAction
 	;
 
 var() XComDestructibleActor_Toughness    Toughness;
+var() XComDestructibleActor    Target;
 
 event Activated()
 {
-	 local XComDestructibleActor curActor;
-
-        foreach class'Engine'.static.GetCurrentWorldInfo().AllActors(class'XComDestructibleActor', curActor)
-        {
-			curActor.Toughness = Toughness;
-        }        
+	 
+	Target.Toughness = Toughness;
+    Target.TotalHealth = ((Toughness != none) ? Toughness.Health : class'XComDestructibleActor_Toughness'.default.Health);
+    Target.Health = Target.TotalHealth;
         
-      
-    
-        
+	ActivateOutputLink(0);
 }
 
 defaultproperties
@@ -31,5 +28,6 @@ defaultproperties
     bCallHandler=false
 	InputLinks(0)=(LinkDesc="In")
     OutputLinks(0)=(LinkDesc="Out")
-    ObjName="Change All Actor Toughness"
+	VariableLinks(0)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Target",PropertyName=Target)
+    ObjName="Change Actor Toughness"
 }

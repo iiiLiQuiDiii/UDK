@@ -40,6 +40,7 @@ var(Cover) XComCoverInterface.ECoverForceFlag CoverIgnoreFlag;
 
 native simulated function SetHideableFlag(bool bShouldHide);
 native simulated function SetPrimitiveHidden(bool bInHidden);
+native simulated function UpdateTintColor();
 
 defaultproperties
 {

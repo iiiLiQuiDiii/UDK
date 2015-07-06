@@ -6,7 +6,8 @@
  * All rights belong to their respective owners.
  *******************************************************************************/
 class XComRebuildWorldDataVolume extends Volume
-    hidecategories(Navigation,Movement,Display)
+    hidecategories(Navigation,Display)
+	showcategories(Movement,Object)
 placeable;
 
 defaultproperties

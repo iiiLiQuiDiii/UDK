@@ -12,13 +12,13 @@ class LevelStreaming extends Object
 	native;
 
 /** Name of the level package name used for loading.																		*/
-var() editconst const name							PackageName;
+var()  name							PackageName;
 
 /** Pointer to Level object if currently loaded/ streamed in.																*/
 var transient const	level							LoadedLevel;
 
 /** Offset applied to actors after loading.																					*/
-var() const			vector							Offset;
+var()			vector							Offset;
 
 /** Current/ old offset required for changing the offset at runtime, e.g. in the Editor.									*/
 var const			vector							OldOffset;	
@@ -113,6 +113,7 @@ cpptext
 
 defaultproperties
 {
+	PackageName="URB_CemeteryGrand_Bomb"
 	bShouldBeVisibleInEditor=TRUE
 	DrawColor=(R=255,G=255,B=255,A=255)
 

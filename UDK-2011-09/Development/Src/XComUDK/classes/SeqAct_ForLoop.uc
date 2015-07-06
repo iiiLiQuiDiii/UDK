@@ -20,7 +20,9 @@ event Activated()
   // Check if we have a range to iterate over
   if (Start == End || Increment <= 0)
   {
-    return;
+    
+	 ActivateOutputLink(1);
+	 return;
   }
 
   if (!HasSetInternalIndex)
@@ -41,6 +43,7 @@ event Activated()
     else
     {
       InternalIndex = Start;
+	   ActivateOutputLink(1);
     }
   }
   else if (Start > End)
@@ -54,7 +57,9 @@ event Activated()
     }
     else
     {
+	 
       InternalIndex = Start;
+	  ActivateOutputLink(1);
     }
   }
 }
@@ -69,6 +74,7 @@ defaultproperties
   ObjCategory="Misc"
   InputLinks(0)=(LinkDesc="In")
   OutputLinks(0)=(LinkDesc="Out")
+  OutputLinks(1)=(LinkDesc="Done")
   VariableLinks.Empty
   VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Start",PropertyName=Start)
   VariableLinks(1)=(ExpectedType=class'SeqVar_Int',LinkDesc="End",PropertyName=End)

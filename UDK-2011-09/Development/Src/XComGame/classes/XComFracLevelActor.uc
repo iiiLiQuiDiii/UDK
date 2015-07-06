@@ -97,8 +97,8 @@ struct CheckpointRecord
 //var private native const noexport Pointer VfTable_IXComCoverInterface;
 //var private native const noexport Pointer VfTable_IDestructible;
 var() const editconst export editinline XComFloorComponent FloorComponent;
-var() const bool HideableWhenBlockingObjectOfInterest;
-var() const bool bIgnoreFor3DCursorCollision;
+var()  bool HideableWhenBlockingObjectOfInterest;
+var()  bool bIgnoreFor3DCursorCollision;
 var() bool bAlwaysFracture;
 var() bool bAlwaysDestroyColumns;
 var(Cover) bool bAlwaysConsiderForCover;
@@ -122,6 +122,8 @@ var transient FracturedHitInfo LastHitInfo;
 var init array<init FragmentColumn> FragmentColumns;
 var() XComFracLevelActorImpactDefinition ImpactEffectsDefinition;
 var() EmitterInstanceParameterSet ImpactInstanceParameters;
+
+native simulated function UpdateTintColor();
 
 defaultproperties
 {
